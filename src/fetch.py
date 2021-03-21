@@ -1,5 +1,6 @@
 import requests
 import os
+from pprint import pprint 
 
 class Tech():
     def __init__(self):
@@ -19,14 +20,5 @@ class Tech():
     def parse(self):
         # それぞれのトレンド情報をparseする
         for service in self.urls.keys():
-            print(self.get_trend(service))
-            
+            pprint(self.get_trend(service))
         
-
-def main():
-    trend = Tech()
-    trend.parse()
-
-if __name__ == '__main__':
-    main()
-    
