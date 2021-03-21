@@ -20,5 +20,4 @@ jobs:
       run:  echo "fetch zenn,qiita trend" &&
             sed -e "s|__TREND_QIITA_URL__|${TREND_QIITA_URL}|g" 
                 -e "s|__TREND_ZENN_URL__|${TREND_ZENN_URL}|g" .env.example > .env &&
-            docker-compose up -d &&
-            docker-compose exec zenn_qiita python fetch.py 
+            docker-compose exec -T zenn_qiita python fetch.py 
