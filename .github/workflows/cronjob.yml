@@ -22,12 +22,4 @@ jobs:
             sed -e "s|__TREND_QIITA_URL__|${TREND_QIITA_URL}|g" 
                 -e "s|__TREND_ZENN_URL__|${TREND_ZENN_URL}|g" .env.example > .env &&
             docker-compose up -d &&
-            docker-compose exec -T zenn_qiita python fetch.py 
-    - name: tweet
-      uses: Z-M-Huang/TweetOnAction@v1
-      with:
-        consumer_key: ${{ secrets.TWITTER_API_KEY }}
-        consumer_secret: ${{ secrets.TWITTER_SECRET_KEY }}
-        access_token: ${{ secrets.TWITTER_ACCESS_TOKEN }}
-        token_secret: ${{ secrets.TWITTER_ACCESS_TOKEN_SECRET }}
-        content: First Tweet on GithubAction!
+            docker-compose exec -T zenn_qiita python main.py
