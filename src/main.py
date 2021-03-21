@@ -6,7 +6,7 @@ def main():
     trend = Tech()
     twitter = Twitter()
     trend.parse()
-    twitter.tweet()
+    twitter.tweet(trend.message)
 
 if __name__ == '__main__':
     main()

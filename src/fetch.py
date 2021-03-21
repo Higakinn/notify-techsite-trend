@@ -8,7 +8,12 @@ class Tech():
             'zenn': os.getenv('TREND_ZENN_URL'),
             'qiita': os.getenv('TREND_QIITA_URL')
         }
-
+        self.service_urls = {
+            'zenn': 'https://zenn.dev',
+            'qiita': 'https://qiita.com'
+        }
+        self.TOPIC = 'flutter'
+        self.message = f'【今日の{self.TOPIC}のトレンドです！】' + '\n'
     def get_trend(self, service='zenn'):
         try :
             response = requests.get(self.urls[service])
@@ -20,5 +25,28 @@ class Tech():
     def parse(self):
         # それぞれのトレンド情報をparseする
         for service in self.urls.keys():
-            pprint(self.get_trend(service))
-        
+            trend_json_message = self.get_trend(service)
+            getattr(self, f"_parse_{service}")(trend_json_message)
+            #pprint(self.get_trend(service))
+
+    def _parse_zenn(self, json):
+        print("zenn")
+        for article in json: #zennの記事情報からそれぞれの記事を取り出す
+            # print("【title】",article["title"])
+            # 各記事のURLを作成
+            url = f"{self.service_urls['zenn']}/{article['user']['username']}/articles/{article['slug']}"
+            # print("url",url)
+            # pprint(article['user'])
+            for topic in article['topics']:
+                # topicで絞り込み
+                if self.TOPIC in topic['name']:
+                    # print("【title】",article["title"])
+                    self.message += article["title"] + "\n" + url + "\n"
+            # pprint(j['topics'])
+        print("parse completed")
+        print(self.message)
+    
+    def _parse_qiita(self, json):
+        print("qiita")
+        # pprint(json)
+        pass
