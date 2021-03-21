@@ -1,0 +1,9 @@
+version: "2"
+services:
+  zenn_qiita:
+    build: .
+    env_file:
+      .env
+    volumes:
+      - ./src/:/mnt
+    tty: true
