@@ -12,6 +12,10 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
+    - name: Git checkout current branch #作業ブランチにchekout
+      uses: actions/checkout@v2 #サードパーティの公開アクションを利用
+      with:
+        ref: ${{ github.ref }}
     - name: fetch zenn qiita trend 
       run:  echo "fetch zenn,qiita trend" &&
             sed -e "s|__TREND_QIITA_URL__|${TREND_QIITA_URL}|g" 
