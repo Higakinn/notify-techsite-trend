@@ -21,4 +21,4 @@ jobs:
             sed -e "s|__TREND_QIITA_URL__|${TREND_QIITA_URL}|g" 
                 -e "s|__TREND_ZENN_URL__|${TREND_ZENN_URL}|g" .env.example > .env &&
             docker-compose up -d &&
-            docker-compose ps
+            docker-compose exec zenn_qiita python fetch.py 
