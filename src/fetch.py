@@ -15,7 +15,7 @@ class Tech():
         }
         self.TOPICS = ['flutter','go']
         self.messages = {
-            'header' : f'【今日ののトレンドのピックアップです！】' + '\n',
+            'header' : f'【今日のトレンド記事のピックアップです！】' + '\n',
             'article' : []
         }
 
@@ -38,7 +38,7 @@ class Tech():
         article = random.choice(json)
         url = f"{self.service_urls['zenn']}/{article['user']['username']}/articles/{article['slug']}"
         self.messages['article'].append(article["title"] + "\n" + url + "\n")
-        
+
     def _parse_qiita_random(self, json):
         article = random.choice(json)
         url = article['node']['linkUrl']
