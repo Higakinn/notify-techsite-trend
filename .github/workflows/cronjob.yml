@@ -1,8 +1,8 @@
 name: fetch zenn and qiita trend
 
-on: push
-  # schedule:
-  #   - cron: '0 0 * * *' # 毎日9時に定期実行(時間がutcなので注意)
+on: #push
+  schedule:
+    - cron: '0 0 * * *' # 毎日9時に定期実行(時間がutcなので注意)
   
 
 env:
