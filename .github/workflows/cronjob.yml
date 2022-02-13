@@ -22,6 +22,16 @@ jobs:
       uses: actions/checkout@v2 #サードパーティの公開アクションを利用
       with:
         ref: ${{ github.ref }}
+    - name: Git setting
+      run: |
+        # pullしておかないと Re-run all jobs 実行時はコケてしまうため
+        git pull
+        git config --local user.email "github-actions[bot]@users.noreply.github.com"
+        git config --local user.name "github-actions[bot]"
+    - name: Commit and push
+      run: |
+        git commit --allow-empty -m "chore: prevent automatic workflow stopping" -m "see: https://docs.github.com/en/actions/managing-workflow-runs/disabling-and-enabling-a-workflow"
+        git push
     - name: fetch zenn qiita trend 
       run:  echo "fetch zenn,qiita trend" &&
             sed -e "s|__TREND_QIITA_URL__|${TREND_QIITA_URL}|g" 
