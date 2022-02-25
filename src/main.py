@@ -1,15 +1,9 @@
-from fetch import Tech
 from tweet import Twitter
 from model.qiita import QiitaTrend
 from model.zenn import ZennTrend
 import random
 
 def main():
-    # trend = Tech()
-    # twitter = Twitter()
-    # trend.parse()
-    # for message in trend.messages['article']:
-    #     twitter.tweet(trend.messages['header'] + "\n" + message + "\n" + "#Qiita" + " #Zenn")
     tech_sites = [
         QiitaTrend(),
         ZennTrend()
