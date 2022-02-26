@@ -17,7 +17,7 @@ class QiitaTrend(TechTrendBase):
           raise SystemExit(e)
       
       results = response.json()
-      article_urls = [{article['node']['title']: article['node']['linkUrl']} for article in results]
+      article_urls = [{'title': article['node']['title'], 'url': article['node']['linkUrl']} for article in results]
       return article_urls
       # url = f"{self.service_urls['zenn']}/{article['user']['username']}/articles/{article['slug']}"
 

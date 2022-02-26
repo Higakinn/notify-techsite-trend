@@ -20,6 +20,7 @@ class ZennTrend(TechTrendBase):
         article_user = article['user']['username']
         article_title = article["title"]
         article_url = f"{zenn_url}/{article_user}/articles/{article_slug}"
-        article_urls.append({article_title: article_url})
+        article_urls.append({'title': article_title, 'url' : article_url})
+      
       return article_urls
 
