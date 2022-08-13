@@ -1,4 +1,4 @@
-name: github action batch
+name: insert notion db batch
 
 on: # push
   schedule:
@@ -30,3 +30,16 @@ jobs:
           echo -n ${ENCODED_ENV} | base64 -d > .env
           docker-compose run zenn_qiita python insert_notion.py
           echo "insert notion batch end"
+      - name: success
+        uses: sarisia/actions-status-discord@v1
+        if: success()
+        with:
+          description: "TechSite Trend Insert NotionDB Batch Success!!"
+          webhook: ${{ secrets.DISCORD_WEBHOOK }}
+      - name: failure
+        uses: sarisia/actions-status-discord@v1
+        if: failure()
+        with:
+          webhook: ${{ secrets.DISCORD_WEBHOOK }}
+          description: "TechSite Trend Insert NotionDB Batch Failure!!"
+          color: 0xff91a4
