@@ -21,7 +21,10 @@ def _create_tweet_message(title, url, user):
 
 
 def main():
-    tech_sites = [QiitaTrend(), ZennTrend()]
+    tech_sites = [
+        # QiitaTrend(), 
+        ZennTrend()
+    ]
     twitter = Twitter()
     for tech_site in tech_sites:
         try:
