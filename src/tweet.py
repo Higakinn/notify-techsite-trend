@@ -14,4 +14,9 @@ class Twitter:
         self.api = tweepy.API(auth)
 
     def tweet(self, message=time.time()):  # 好きな言葉をツイート
-        self.api.update_status(message)
+        status = self.api.update_status(message)
+        return status.id
+
+    def reply(self, tweet_id, message=time.time()):
+        self.api.update_status(message, in_reply_to_status_id=tweet_id)
+        print(f"リプライ!")

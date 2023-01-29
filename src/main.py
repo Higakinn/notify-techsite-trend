@@ -1,4 +1,5 @@
 import random
+import time
 
 from tweet import Twitter
 from model.qiita import QiitaTrend
@@ -22,7 +23,7 @@ def _create_tweet_message(title, url, user):
 
 def main():
     tech_sites = [
-        # QiitaTrend(), 
+        # QiitaTrend(),
         ZennTrend()
     ]
     twitter = Twitter()
@@ -37,9 +38,13 @@ def main():
             mention = twi_url.replace("https://twitter.com/", "@")
             tweet_message = _create_tweet_message(trend["title"], trend["url"], mention)
 
-            twitter.tweet(tweet_message)
+            tweet_id = twitter.tweet(tweet_message)
+            time.sleep(2)
+            reply_message = f'@ChatGPTBot \n {trend["title"]}'
+            twitter.reply(tweet_id=tweet_id, message=reply_message)
+
         except Exception as e:
-            # TODO: 以下5行関数化する
+            # TODO: 以下関数化する
             trend = random.choice(trend_results)
 
             twi_url = TwitterScraper.scraping(url=trend["user_url"])
@@ -49,7 +54,10 @@ def main():
                 mention = twi_url.replace("https://twitter.com/", "@")
             tweet_message = _create_tweet_message(trend["title"], trend["url"], mention)
 
-            twitter.tweet(tweet_message)
+            tweet_id = twitter.tweet(tweet_message)
+            time.sleep(2)
+            reply_message = f'@ChatGPTBot \n {trend["title"]}'
+            twitter.reply(tweet_id=tweet_id, message=reply_message)
 
 
 if __name__ == "__main__":
