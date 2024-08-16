@@ -40,5 +40,5 @@ jobs:
                 -e "s|__TWITTER_SECRET_KEY__|${TWITTER_API_SECRET_KEY}|g" 
                 -e "s|__TWITTER_ACCESS_TOKEN__|${TWITTER_ACCESS_TOKEN}|g" 
                 -e "s|__TWITTER_ACCESS_TOKEN_SECRET__|${TWITTER_ACCESS_TOKEN_SECRET}|g" .env.example > .env &&
-            docker-compose up -d &&
-            docker-compose exec -T zenn_qiita python main.py
+            docker compose up -d &&
+            docker compose exec -T zenn_qiita python main.py

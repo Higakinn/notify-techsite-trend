@@ -28,7 +28,7 @@ jobs:
         run: |
           echo "insert notion batch start" 
           echo -n ${ENCODED_ENV} | base64 -d > .env
-          docker-compose run zenn_qiita python insert_notion.py
+          docker compose run zenn_qiita python insert_notion.py
           echo "insert notion batch end"
       - name: success
         uses: sarisia/actions-status-discord@v1
